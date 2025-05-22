@@ -1,5 +1,5 @@
 import '../Styles/Echonotes.css'
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import Header from './Header'
 import SessionInfo from './SessionInfo'
 import Transcription from './Transcription';
@@ -10,6 +10,10 @@ function Echonotes() {
   const transcriptionRef = useRef(null)
   const sidebarRef = useRef(null);
   const resizerRef = useRef(null);
+
+  // Lifted states
+  const [recording, setRecording] = useState(false);
+  const [playing, setPlaying] = useState(false);
 
   useEffect(() => {
     const resizer = resizerRef.current;
@@ -85,10 +89,15 @@ function Echonotes() {
   return(
     <div className="echonotes">
       <Header />
-      <SessionInfo />
+      <SessionInfo
+        recording={recording}
+        playing={playing}
+        setRecording={setRecording}
+        setPlaying={setPlaying}
+      />
       <div className="main-content" ref={containerRef}>
         <div className="left-panel" ref={transcriptionRef}>
-          <Transcription />
+          <Transcription recording={recording} playing={playing} />
         </div>
         <div className="resizer" ref={resizerRef} />
         <div className="right-panel" ref={sidebarRef}>

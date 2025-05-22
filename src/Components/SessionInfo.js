@@ -1,10 +1,15 @@
 import '../Styles/SessionInfo.css'
 import RecordingSuite from './RecordingSuite';
 
-function RecordingInfo() {
+function SessionInfo({ recording, playing, setRecording, setPlaying }) {
   return (
     <div className="session-info">
-      <RecordingSuite />
+      <RecordingSuite
+        recording={recording}
+        playing={playing}
+        setRecording={setRecording}
+        setPlaying={setPlaying}
+      />
       <input type="text" className="title-box" placeholder="recording title" name='title' required />
       
       <div className="file">
@@ -21,4 +26,4 @@ function RecordingInfo() {
   );
 }
 
-export default RecordingInfo;
+export default SessionInfo;

@@ -1,12 +1,7 @@
-import { useState, useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import '../Styles/RecordingSuite.css';
 
-function RecordingSuite() {
-  const [playPause, setPlayPause] = useState("fa-circle-play");
-  const [recording, setRecording] = useState(false);
-  const [time, setTime] = useState(0);
-  const intervalRef = useRef(null);
-
+function RecordingSuite({ recording, playing, setRecording, setPlaying }) {
   const formatTime = (seconds) => {
     const hrs = String(Math.floor(seconds / 3600)).padStart(2, '0');
     const mins = String(Math.floor((seconds % 3600) / 60)).padStart(2, '0');
@@ -14,78 +9,72 @@ function RecordingSuite() {
     return `${hrs}:${mins}:${secs}`;
   };
 
-  const startTimer = () => {
-    if (!intervalRef.current) {
+  const [time, setTime] = React.useState(0);
+  const intervalRef = React.useRef(null);
+
+  useEffect(() => {
+    if (recording && playing && !intervalRef.current) {
       intervalRef.current = setInterval(() => {
         setTime(prev => prev + 1);
       }, 1000);
-    }
-  };
-
-  const pauseTimer = () => {
-    if (intervalRef.current) {
+    } else if ((!recording || !playing) && intervalRef.current) {
       clearInterval(intervalRef.current);
       intervalRef.current = null;
     }
-  };
 
-  const resetTimer = () => {
-    pauseTimer();
-    setTime(0);
-  };
+    if (!recording) {
+      setTime(0);
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+        intervalRef.current = null;
+      }
+    }
+
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+        intervalRef.current = null;
+      }
+    };
+  }, [recording, playing]);
 
   const clickPlayPause = () => {
     if (!recording) return;
-
-    setPlayPause(prev =>
-      prev === "fa-circle-play" ? "fa-circle-pause" : "fa-circle-play"
-    );
-
-    if (playPause === "fa-circle-play") {
-      startTimer();
-    } else {
-      pauseTimer();
-    }
+    setPlaying(prev => !prev);
   };
 
   const clickRecording = () => {
     if (recording) return;
     setRecording(true);
-    setPlayPause("fa-circle-pause");
+    setPlaying(true);
     setTime(0);
-    startTimer();
   };
 
   const clickStop = () => {
     if (recording) {
       setRecording(false);
-      pauseTimer();
-      resetTimer();
-      setPlayPause("fa-circle-play");
+      setPlaying(false);
+      setTime(0);
     }
   };
 
-  useEffect(() => {
-    return () => pauseTimer();
-  }, []);
-
   return (
     <div className="recording-suite">
-      <div className="recording-button">
-        <div
-          className={`inner-circle ${recording ? 'recording-in-progress' : ''}`}
-          onClick={clickRecording}
-        />
+      <div
+        className={`recording-button ${recording ? 'recording-in-progress' : ''}`}
+        onClick={clickRecording}
+      >
+        <div className="inner-circle" />
       </div>
       <div className="recording-time">{formatTime(time)}</div>
-      <i 
-        className="recording-icon fa-regular fa-circle-stop" 
+      <i
+        className="recording-icon fa-regular fa-circle-stop"
         onClick={clickStop}
-      ></i>
-      <i 
-        className={`recording-icon fa-regular ${playPause}`} 
+      />
+      <i
+        className={`recording-icon fa-regular ${playing ? "fa-circle-pause" : "fa-circle-play"}`}
         onClick={clickPlayPause}
-      ></i>
+      />
     </div>
   );
 }
