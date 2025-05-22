@@ -26,12 +26,14 @@
 }
 
 .live-transcription {
+  display: flex;
+  align-items: center;
   background-color: #d1d9f8;
   color: #1c2b5a;
-  padding: 12px;
+  padding: 4px;
   border-radius: 4px;
   margin-top: 20px;
   font-style: italic;
   opacity: 0.9;
-  min-height: 40px;
+  min-height: 25px;
 }
