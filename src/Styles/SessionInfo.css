@@ -2,7 +2,20 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 120px;
+  height: auto;
   width: 100vw;
   background-color: #c1cbed;
+}
+
+.title-box {
+  width: 50dvw;
+  height: 50px;
+  background: none;
+  border: none;
+  border-bottom: 2px solid #14255b;
+  font-size: 30px;
+}
+
+.title-box:focus {
+  outline: none;
 }
