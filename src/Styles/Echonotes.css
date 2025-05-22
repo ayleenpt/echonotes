@@ -1,0 +1,22 @@
+.echonotes {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.main-content {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+.left-panel, .right-panel {
+  height: 100%;
+  overflow: auto;
+}
+
+.resizer {
+  width: 5px;
+  cursor: ew-resize;
+  background-color: #ccc;
+}
