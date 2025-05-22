@@ -1,0 +1,16 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: absolute;
+  background-color: #07032c;
+  height: 50px;
+  width: 100vw;
+}
+
+.fa-solid {
+  font-size: 35px;
+  color: #e9ebf2;
+  cursor: pointer;
+  margin: 20px;
+}
