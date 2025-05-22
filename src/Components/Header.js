@@ -3,8 +3,8 @@ import '../Styles/Header.css'
 function Header() {
   return (
     <div className="header">
-      <i class="fa-solid fa-bars"></i>
-      <i className="fa-solid fa-circle-user"></i>
+      <i className="header-icon fa-solid fa-bars"></i>
+      <i className="header-icon fa-solid fa-circle-user"></i>
     </div>
   );
 }

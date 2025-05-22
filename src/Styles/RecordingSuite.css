@@ -1,0 +1,20 @@
+.recording-suite {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 270px;
+  height: 80px;
+  margin: 30px;
+}
+
+.fa-record-vinyl {
+  font-size: 60px;
+  color: #c80000;
+  cursor: pointer;
+}
+
+.recording-icon {
+  font-size: 40px;
+  color: #14255b;
+  cursor: pointer;
+}
