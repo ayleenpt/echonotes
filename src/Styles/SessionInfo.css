@@ -1,5 +1,6 @@
 .session-info {
   display: flex;
+  position: relative;
   align-items: center;
   justify-content: space-between;
   height: auto;
@@ -14,8 +15,48 @@
   border: none;
   border-bottom: 2px solid #14255b;
   font-size: 30px;
+  justify-self: center;
 }
 
 .title-box:focus {
   outline: none;
+}
+
+.file {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+  width: 270px;
+  height: 65px;
+  margin: 0 2vw;
+}
+
+.file-button {
+  display: flex;
+  justify-content: space-between;
+  height: 30px;
+  width: 130px;
+  background-color: #f3f4f8;
+  color: #14255b;
+  cursor: pointer;
+  border: none;
+  border-radius: 10px;
+}
+
+.file-button:active {
+  background-color: #eaebf2;
+  border-top: solid 1px white;
+  border-left: solid 1px white;
+}
+
+.file-text {
+  font-size: 15px;
+  margin: 4px 2px;
+}
+
+.file-icon {
+  color: #14255b;
+  margin: 4px 2px;
+  font-size: 18px;
 }

@@ -1,10 +1,10 @@
 .recording-suite {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  gap: 10px;
   width: 270px;
   height: 80px;
-  margin: 0 30px 0 30px;
+  margin: 0 2vw;
 }
 
 .fa-record-vinyl {
