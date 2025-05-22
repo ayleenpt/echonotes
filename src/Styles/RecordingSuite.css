@@ -39,6 +39,7 @@
 
 .recording-in-progress {
   animation: pulse 2s infinite;
+  cursor: auto;
 }
 
 @keyframes pulse {
