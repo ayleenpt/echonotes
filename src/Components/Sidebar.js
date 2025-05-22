@@ -4,7 +4,7 @@ import '../Styles/Sidebar.css';
 function Sidebar() {
   return (
     <div className="sidebar">
-      Right Panel
+      Sidebar
     </div>
   );
 }
