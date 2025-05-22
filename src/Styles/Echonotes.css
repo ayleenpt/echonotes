@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   height: 100vh;
+  background-color: #f5f8ff;
 }
 
 .main-content {
@@ -10,8 +11,11 @@
   overflow: hidden;
 }
 
-.left-panel, .right-panel {
+.right-panel {
   height: 100%;
+}
+
+.left-panel {
   overflow: auto;
 }
 
