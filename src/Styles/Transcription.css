@@ -1,10 +1,9 @@
-/* Transcription.css */
-
 .transcription-container {
   padding: 20px;
   background-color: #f5f8ff;
   font-family: sans-serif;
   color: #1c2b5a;
+  height: 100%;
 }
 
 .note-block {
