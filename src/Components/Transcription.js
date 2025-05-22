@@ -13,33 +13,29 @@ const Transcription = ({ recording, playing }) => {
 
   useEffect(() => {
     if (recording && playing) {
-      if (intervalRef.current) return; // already running
+      if (intervalRef.current) return;
 
       intervalRef.current = setInterval(() => {
-        if (indexRef.current < allWords.current.length) {
-          const nextWord = allWords.current[indexRef.current];
-          setWords(prev => [...prev, nextWord]);
-          indexRef.current++;
+        const nextWord = allWords.current[indexRef.current % allWords.current.length];
+        indexRef.current++;
 
-          if (/[.!?]$/.test(nextWord)) {
-            const fullSentence = [...words, nextWord].join(' ');
-            setNotes(prev => [...prev, formatNote(fullSentence)]);
-            setWords([]);
-          }
+        if (/[.!?]$/.test(nextWord)) {
+          setNotes(prevNotes => [
+            ...prevNotes,
+            formatNote([...words, nextWord].join(' '))
+          ]);
+          setWords([]);
         } else {
-          clearInterval(intervalRef.current);
-          intervalRef.current = null;
+          setWords(prev => [...prev, nextWord]);
         }
       }, 300);
     } else {
-      // Pause the interval
       if (intervalRef.current) {
         clearInterval(intervalRef.current);
         intervalRef.current = null;
       }
     }
 
-    // Cleanup on unmount
     return () => {
       if (intervalRef.current) {
         clearInterval(intervalRef.current);
@@ -48,17 +44,20 @@ const Transcription = ({ recording, playing }) => {
     };
   }, [recording, playing, words]);
 
+
   const formatNote = (sentence) => {
-    const isHeader = firstNoteRef.current || Math.random() < 0.3; // Ensure first is header
+    const isHeader = firstNoteRef.current || Math.random() < 0.3;
     firstNoteRef.current = false;
 
     if (isHeader) {
+      console.log("print header");
       return (
         <div className="note-block" key={Math.random()}>
           <h4>{sentence}</h4>
         </div>
       );
     } else {
+      console.log("print bullet");
       return (
         <div className="note-block" key={Math.random()}>
           <ul>
@@ -75,8 +74,10 @@ const Transcription = ({ recording, playing }) => {
         <div key={i}>{note}</div>
       ))}
 
-      <div className="live-transcription">
-        {words.join(' ')}
+      <div className="transcription-padding">
+        <div className="live-transcription">
+          {words.join(' ')}
+        </div>
       </div>
     </div>
   );

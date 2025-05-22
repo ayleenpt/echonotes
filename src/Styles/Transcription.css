@@ -25,6 +25,11 @@
   margin-bottom: 6px;
 }
 
+.transcription-padding {
+  margin-top: 20px;
+  height: 40dvh;
+}
+
 .live-transcription {
   display: flex;
   align-items: center;
@@ -32,7 +37,6 @@
   color: #1c2b5a;
   padding: 4px;
   border-radius: 4px;
-  margin-top: 20px;
   font-style: italic;
   opacity: 0.9;
   min-height: 25px;
