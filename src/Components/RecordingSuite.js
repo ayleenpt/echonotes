@@ -3,6 +3,7 @@ import '../Styles/RecordingSuite.css';
 
 function RecordingSuite() {
   const [playPause, setPlayPause] = useState("fa-circle-play");
+  const [recording, setRecording] = useState("");
 
   const clickPlayPause = () => {
     setPlayPause(prev => 
@@ -10,9 +11,20 @@ function RecordingSuite() {
     );
   }
 
+  const clickRecording = () => {
+    setRecording(prev =>
+      prev === "" ? "recording-in-progress" : ""
+    );
+  }
+
   return (
     <div className="recording-suite">
-      <i className="fa-solid fa-record-vinyl"></i>
+      <div className="recording-button">
+        <div
+          className={`inner-circle ${recording}`}
+          onClick={clickRecording}
+        />
+      </div>
       <div className="recording-time">00:00:00</div>
       <i className="recording-icon fa-regular fa-circle-stop"></i>
       <i 
