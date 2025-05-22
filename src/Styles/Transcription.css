@@ -1,4 +1,38 @@
-.transcription {
-  padding: 16px;
-  height: 100%;
+/* Transcription.css */
+
+.transcription-container {
+  padding: 20px;
+  background-color: #f5f8ff;
+  font-family: sans-serif;
+  color: #1c2b5a;
+}
+
+.note-block {
+  margin-bottom: 20px;
+}
+
+.note-block h4 {
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.note-block ul {
+  padding-left: 20px;
+  margin: 0;
+}
+
+.note-block ul li {
+  list-style-type: disc;
+  margin-bottom: 6px;
+}
+
+.live-transcription {
+  background-color: #d1d9f8;
+  color: #1c2b5a;
+  padding: 12px;
+  border-radius: 4px;
+  margin-top: 20px;
+  font-style: italic;
+  opacity: 0.9;
+  min-height: 40px;
 }
