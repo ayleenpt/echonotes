@@ -13,3 +13,9 @@
   cursor: pointer;
   margin: 20px;
 }
+
+.logo {
+  color: #daddea;
+  font-size: 30px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
