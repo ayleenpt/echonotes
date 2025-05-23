@@ -1,5 +1,5 @@
 import '../Styles/Echonotes.css'
-import React, { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import Header from './Header'
 import SessionInfo from './SessionInfo'
 import Transcription from './Transcription';
@@ -44,7 +44,7 @@ function Echonotes() {
 
     const onMouseMove = (e) => {
       const dx = e.clientX - startX;
-      const minPanelWidth = 200;
+      const minPanelWidth = 400;
 
       let newLeftWidth = Math.max(minPanelWidth, startLeftWidth + dx);
       const currentContainerWidth = container.getBoundingClientRect().width;
