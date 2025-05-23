@@ -23,11 +23,15 @@ function Echonotes() {
     if (!container || !left || !right || !resizer) {
       return;
     }
-    
+
     const containerWidth = container.getBoundingClientRect().width;
     const resizerWidth = resizer.getBoundingClientRect().width;
+    const minPanelWidth = 300;
+
     const initialLeftWidth = Math.floor((containerWidth - resizerWidth) * 0.55);
     const initialRightWidth = containerWidth - resizerWidth - initialLeftWidth;
+
+    let leftRatio = initialLeftWidth / (containerWidth - resizerWidth);
 
     left.style.width = `${initialLeftWidth}px`;
     right.style.width = `${initialRightWidth}px`;
@@ -44,31 +48,25 @@ function Echonotes() {
 
     const onMouseMove = (e) => {
       const dx = e.clientX - startX;
-      const minPanelWidth = 400;
+      const currentContainerWidth = container.getBoundingClientRect().width;
 
       let newLeftWidth = Math.max(minPanelWidth, startLeftWidth + dx);
-      const currentContainerWidth = container.getBoundingClientRect().width;
-      const currentResizerWidth = resizer.getBoundingClientRect().width;
+      let newRightWidth = currentContainerWidth - newLeftWidth - resizerWidth;
 
-      let newRightWidth = Math.max(minPanelWidth, currentContainerWidth - newLeftWidth - currentResizerWidth);
-
-      if (newLeftWidth + newRightWidth + currentResizerWidth > currentContainerWidth) {
-        if (newLeftWidth < minPanelWidth) {
-          newLeftWidth = minPanelWidth;
-          newRightWidth = Math.max(minPanelWidth, currentContainerWidth - newLeftWidth - currentResizerWidth);
-        } else if (newRightWidth < minPanelWidth) {
-          newRightWidth = minPanelWidth;
-          newLeftWidth = Math.max(minPanelWidth, currentContainerWidth - newRightWidth - currentResizerWidth);
-        }
+      if (newRightWidth < minPanelWidth) {
+        newRightWidth = minPanelWidth;
+        newLeftWidth = currentContainerWidth - newRightWidth - resizerWidth;
       }
 
-      if (newLeftWidth + newRightWidth + currentResizerWidth > currentContainerWidth) {
-         newRightWidth = currentContainerWidth - newLeftWidth - currentResizerWidth;
+      if (newLeftWidth < minPanelWidth) {
+        newLeftWidth = minPanelWidth;
+        newRightWidth = currentContainerWidth - newLeftWidth - resizerWidth;
       }
-
 
       left.style.width = `${newLeftWidth}px`;
       right.style.width = `${newRightWidth}px`;
+
+      leftRatio = newLeftWidth / (currentContainerWidth - resizerWidth);
     };
 
     const onMouseUp = () => {
@@ -76,12 +74,26 @@ function Echonotes() {
       document.removeEventListener('mouseup', onMouseUp);
     };
 
+    const handleResize = () => {
+      const currentContainerWidth = container.getBoundingClientRect().width;
+      const totalMinWidth = minPanelWidth * 2 + resizerWidth;
+
+      let adjustedWidth = Math.max(currentContainerWidth, totalMinWidth);
+      const newLeftWidth = Math.max(minPanelWidth, (adjustedWidth - resizerWidth) * leftRatio);
+      const newRightWidth = Math.max(minPanelWidth, adjustedWidth - resizerWidth - newLeftWidth);
+
+      left.style.width = `${newLeftWidth}px`;
+      right.style.width = `${newRightWidth}px`;
+    };
+
     resizer.addEventListener('mousedown', onMouseDown);
+    window.addEventListener('resize', handleResize);
 
     return () => {
       resizer.removeEventListener('mousedown', onMouseDown);
       document.removeEventListener('mousemove', onMouseMove);
       document.removeEventListener('mouseup', onMouseUp);
+      window.removeEventListener('resize', handleResize);
     };
   }, []);
 

@@ -2,6 +2,8 @@
   display: flex;
   position: relative;
   align-items: start;
+  justify-content: space-between;
+  gap: 10px;
   padding: 16px;
   background-color: white;
   height: 100%;
