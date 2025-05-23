@@ -11,7 +11,6 @@ function Echonotes() {
   const sidebarRef = useRef(null);
   const resizerRef = useRef(null);
 
-  // Lifted states
   const [recording, setRecording] = useState(false);
   const [playing, setPlaying] = useState(false);
 

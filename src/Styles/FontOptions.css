@@ -1,0 +1,109 @@
+.font-options {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: auto;
+  width: 95%;
+  min-width: 200px;
+  gap: 5px;
+}
+
+
+.toggles, .selections {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 3px;
+}
+
+.font {
+  display: flex;
+  align-items: center;
+  padding: 2px 5px;
+  width: 200px;
+  max-width: 50%;
+  height: 25px;
+  border: 1px solid rgb(200, 200, 200);
+  background-color: rgb(225, 225, 225);
+  border-radius: 5px;
+  font-size: 15px;
+}
+
+.font-size {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 23px;
+  width: 70px;
+  max-width: 30%;
+  border: 1px solid rgb(200, 200, 200);
+  border-radius: 5px;
+  font-size: 15px;
+}
+
+.font-adjust {
+  width: 20px;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.font-color {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+  height: 20px;
+  cursor: pointer;
+  padding: 0 2px 0 5px;
+}
+
+.color-bar {
+  width: 20px;
+  background: red;
+  height: 5px;
+  border-radius: 5px;
+  background-image: linear-gradient(to right, red,orange,yellow,rgb(0, 208, 0),rgb(0, 115, 255),rgb(189, 34, 255));
+}
+
+.format {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 25px;
+  width: 25px;
+  cursor: pointer;
+  font-size: 20px;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  border: none;
+  background: none;
+  border-radius: 5px;
+  padding-bottom: 5px;
+}
+
+.format-active {
+  background: rgb(237, 213, 231);
+}
+
+.bold { font-weight: bold; }
+.italic { font-style: italic; padding-right: 8px; }
+.underline { text-decoration: underline; }
+.strikethrough { text-decoration: line-through; }
+
+.alignment {
+  border: none;
+  background: none;
+  font-size: 18px;
+  margin-bottom: 2px;
+  cursor: pointer;
+}
+
+.bullet {
+  font-size: 18px;
+  margin-top: 1px;
+}
+
+@media (max-width: 1200px) {
+  .font-options { flex-direction: column; align-items: start; }
+}
